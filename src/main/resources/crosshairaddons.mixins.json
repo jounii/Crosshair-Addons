@@ -6,8 +6,7 @@
 		"MinecraftMixin",
 		"ClientPacketListenerMixin",
 		"MultiPlayerGameModeMixin",
-		"GuiGraphicsExtractorMixin",
-		"GameRendererMixin"
+		"GuiGraphicsExtractorMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

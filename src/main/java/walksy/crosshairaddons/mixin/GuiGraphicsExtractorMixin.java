@@ -1,6 +1,6 @@
 package walksy.crosshairaddons.mixin;
 
-import com.mojang.blaze3d.pipeline.RenderPipeline;
+import com.mojang.renderpearl.api.pipeline.RenderPipeline;
 import main.walksy.lib.core.config.local.options.type.PixelGridAnimation;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.texture.TextureAtlas;
@@ -96,7 +96,7 @@ public abstract class GuiGraphicsExtractorMixin {
         return iy == defaultIy ? -1 : iy;
     }
 
-    @Inject(method = "blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V",
+    @Inject(method = "blitSprite(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V",
             at = @At("HEAD"), cancellable = true)
     public void blitSprite(RenderPipeline pipeline, Identifier sprite, int x, int y, int width, int height, int color, CallbackInfo ci) {
         if (!sprite.getPath().contains("hud/crosshair_attack")) return;
@@ -117,7 +117,7 @@ public abstract class GuiGraphicsExtractorMixin {
         }
     }
 
-    @Inject(method = "blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIIIIII)V",
+    @Inject(method = "blitSprite(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIIIIII)V",
             at = @At("HEAD"), cancellable = true)
     public void blitSprite2(RenderPipeline pipeline, Identifier sprite, int textureWidth, int textureHeight, int u, int v, int x, int y, int width, int height, int color, CallbackInfo ci) {
         if (!sprite.getPath().contains("hud/crosshair_attack")) return;

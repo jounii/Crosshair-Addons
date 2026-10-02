@@ -2,6 +2,9 @@ package walksy.crosshairaddons;
 
 import main.walksy.lib.core.config.local.options.type.PixelGridAnimation;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
+import walksy.crosshairaddons.graphics.CrosshairExtractor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -27,6 +30,11 @@ public class CrosshairAddons implements ModInitializer {
     public void onInitialize() {
         stateManager = new AddonStateManager();
         addons = new HashMap<>();
+        CrosshairExtractor extractor = new CrosshairExtractor();
+        HudElementRegistry.attachElementBefore(
+                VanillaHudElements.CROSSHAIR,
+                Identifier.fromNamespaceAndPath("crosshairaddons", "addons"),
+                (graphics, deltaTracker) -> extractor.extract(graphics));
     }
 
     public static @Nullable EntityType<?> getEntityTypeFromString(@Nullable String name) {
